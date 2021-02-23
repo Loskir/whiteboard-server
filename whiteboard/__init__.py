@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_socketio import SocketIO
-from .database import db_wrapper, Board, Stroke
+from .database import db_wrapper
 import logging.config
 logging.config.fileConfig('logger.conf')
 socketio = SocketIO(engineio_logger=True)
