@@ -176,3 +176,4 @@ config.py
 local.db
 logger.conf
 test_client.py
+log/
