@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 from .database import db_wrapper
 import logging.config
 logging.config.fileConfig('logger.conf')
-socketio = SocketIO(engineio_logger=True)
+socketio = SocketIO(engineio_logger=True, cors_allowed_origins="*")
 from . import events
 
 def create_app():
