@@ -29,16 +29,16 @@ def on_update(data: dict):
     board_id = request.args.get('board')
     board = Board.get_or_none(board_id=board_id)
     if board is not None:
-        for stroke in data.get('add', []):
-            Stroke.create(board=board, **stroke)
-        for stroke in data.get('delete', []):
-            stroke = Stroke.get_or_none(stroke_id=stroke.get('stroke_id'))
+        for raw_stroke in data.get('add', []):
+            Stroke.create(board=board, **raw_stroke)
+        for raw_stroke in data.get('delete', []):
+            stroke = Stroke.get_or_none(stroke_id=raw_stroke.get('stroke_id'))
             if stroke is not None:
                 stroke.delete_instance()
-        for stroke in data.get('update', []):
-            content = stroke.get('content', None)
+        for raw_stroke in data.get('update', []):
+            content = raw_stroke.get('content', None)
             if content is not None:
-                stroke = Stroke.get_or_none(stroke_id=stroke.get('stroke_id'))
+                stroke = Stroke.get_or_none(stroke_id=raw_stroke.get('stroke_id'))
                 if stroke is not None:
                     stroke.content = content
                     stroke.save()
