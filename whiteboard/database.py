@@ -24,7 +24,7 @@ class Stroke(db_wrapper.Model):
 def uses_db(func):
     @functools.wraps(func)
     def inner(*args, **kwargs):
-        db_wrapper.database.connect(reuse_if_open=True) #FIXME False
+        db_wrapper.database.connect(reuse_if_open=False)
         try:
             return func(*args, **kwargs)
         finally:
