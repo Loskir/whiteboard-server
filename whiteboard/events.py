@@ -25,7 +25,7 @@ def on_connect():
 @socketio.on('update')
 @uses_db
 def on_update(data: dict):
-    app.logger.info(str(data))
+    app.logger.info(str({x: f'{len(data[x])} stroke(s)' for x in data}))
     board_id = request.args.get('board')
     board = Board.get_or_none(board_id=board_id)
     if board is not None:
