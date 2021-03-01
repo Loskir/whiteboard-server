@@ -16,7 +16,7 @@ class Stroke(db_wrapper.Model):
     board = pw.ForeignKeyField(Board, backref='strokes')
     stroke_id = pw.CharField(default=lambda: str(uuid.uuid4()), unique=True, index=True)
     created_at = pw.IntegerField(default=time.time)
-    content = pw.CharField()
+    content = pw.TextField()
 
 
 # SocketIO doesn't invoke before_request and after request
