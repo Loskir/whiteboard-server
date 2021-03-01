@@ -12,6 +12,7 @@ def create_app():
 
     db_wrapper.init_app(app)
     db_wrapper.database.create_tables([Board, Stroke])
+    db_wrapper.database.close()
 
     socketio.init_app(app)
     return app
