@@ -31,10 +31,11 @@ def on_update(data: dict):
     if board is not None:
         for raw_stroke in data.get('add', []):
             Stroke.create(board=board, **raw_stroke)
-        for raw_stroke in data.get('delete', []):
-            stroke = Stroke.get_or_none(stroke_id=raw_stroke.get('stroke_id'))
-            if stroke is not None:
-                stroke.delete_instance()
+
+        delete_ids = [s.get('stroke_id') for s in data.get('delete', []) if s.get('stroke_id')]
+        if delete_ids:
+            Stroke.delete().where(Stroke.stroke_id.in_(delete_ids)).execute()
+
         for raw_stroke in data.get('update', []):
             content = raw_stroke.get('content', None)
             if content is not None:
