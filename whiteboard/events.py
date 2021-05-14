@@ -9,7 +9,7 @@ app = current_app
 @uses_db
 def on_connect():
     board_id = request.args.get('board', None)
-    board = Board.get_or_none(board_id=board_id)
+    board = Board.get_or_create(board_id=board_id)[0]
     if board is not None:
         app.logger.info(f'{request.sid} connected to {board_id}')
         join_room(board_id)
