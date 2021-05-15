@@ -1,4 +1,3 @@
-from enum import unique
 import peewee as pw
 import uuid
 import time
