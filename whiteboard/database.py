@@ -7,15 +7,20 @@ import functools
 db_wrapper = FlaskDB()
 
 
+class LongTextField(pw.TextField):
+    field_type = 'LONGTEXT'
+
+
 class Board(db_wrapper.Model):
     board_id = pw.CharField(unique=True, index=True)
     created_at = pw.IntegerField(default=time.time)
+
 
 class Stroke(db_wrapper.Model):
     board = pw.ForeignKeyField(Board, backref='strokes')
     stroke_id = pw.CharField(default=lambda: str(uuid.uuid4()), unique=True, index=True)
     created_at = pw.IntegerField(default=time.time)
-    content = pw.TextField()
+    content = LongTextField()
 
 
 # SocketIO doesn't invoke before_request and after request
