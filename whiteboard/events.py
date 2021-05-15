@@ -44,6 +44,6 @@ def on_update(data: dict):
                     stroke.content = content
                     stroke.save()
 
-        emit('update', data, room=board_id, include_self=False) #TODO: check validity
+        emit('update', data, room=board_id, include_self=False)
     else:
         emit('error', {'error': 'Board does not exist'})
