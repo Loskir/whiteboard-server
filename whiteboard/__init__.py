@@ -10,6 +10,10 @@ def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('../config.py', silent=True)
 
+    @app.route('/hello')
+    def index():
+        return 'Hello world!'
+
     db_wrapper.init_app(app)
     db_wrapper.database.create_tables([Board, Stroke])
     db_wrapper.database.close()
