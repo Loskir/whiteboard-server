@@ -2,13 +2,13 @@
 
 FROM python:3.9-slim-buster
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
 RUN mkdir log
 
-CMD ["python", "main.py"]
+CMD ["python", "./main.py"]
