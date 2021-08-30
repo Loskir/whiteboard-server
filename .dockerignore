@@ -171,9 +171,9 @@ dmypy.json
 # profiling data
 .prof
 
-.idea
-
 # End of https://www.toptal.com/developers/gitignore/api/python,macos
 local.db
 test_client.py
 log/
+
+.gitignore
